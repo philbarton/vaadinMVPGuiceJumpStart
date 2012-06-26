@@ -7,6 +7,8 @@ import com.google.inject.Injector;
 import com.vaadin.Application;
 import com.vaadin.terminal.gwt.server.HttpServletRequestListener;
 import com.vaadin.ui.Window;
+import ria.ordermanagement.events.OrderEvent;
+import ria.ordermanagement.events.OrderEventType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +30,7 @@ public class OrderApplication extends Application implements HttpServletRequestL
         OrderRootPresenter orderRootPresenter = injector.getInstance(OrderRootPresenter.class);
         mainWindow.addComponent(orderRootPresenter.getView());
         setMainWindow(mainWindow);
+        getEventBus().fireEvent(new OrderEvent(OrderEventType.INIT_ORDERS_SEARCH));
     }
 
     public void onRequestStart(HttpServletRequest request, HttpServletResponse response) {
