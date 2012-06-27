@@ -28,7 +28,8 @@ public class OrderApplication extends Application implements HttpServletRequestL
         mainWindow = getRootWindow();
         setEventBus(eventBusInstance);
         setRootWindow(windowInstance);
-        injector = Guice.createInjector();
+        //injector = Guice.createInjector();
+        injector = Guice.createInjector(new OrderModule());
         applicationData = injector.getInstance(ApplicationData.class);
         setApplicationData(applicationData);
         OrderRootPresenter orderRootPresenter = injector.getInstance(OrderRootPresenter.class);

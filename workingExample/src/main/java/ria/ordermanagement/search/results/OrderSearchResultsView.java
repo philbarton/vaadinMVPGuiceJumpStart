@@ -20,13 +20,14 @@ public abstract class OrderSearchResultsView extends Table implements MvpView {
 
         setContainerDataSource(container);
 
-        // Set alignments
-        setColumnAlignments(new String[]{Table.ALIGN_LEFT,
-                Table.ALIGN_RIGHT, Table.ALIGN_RIGHT});
+        setColumnAlignments(
+                new String[]{
+                        Table.ALIGN_LEFT,
+                        Table.ALIGN_RIGHT,
+                        Table.ALIGN_RIGHT});
 
-        // Set column widths
         setColumnExpandRatio(OrderService.ORDER_DESCRIPTION_PROPERTY_ID, 1);
-
     }
+
 
 }
