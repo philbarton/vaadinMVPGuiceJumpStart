@@ -1,18 +1,26 @@
 package ria.ordermanagement.search.controls;
 
-import com.vaadin.ui.Component;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
 import ria.common.MvpView;
+import ria.ordermanagement.events.OrderEvent;
+import ria.ordermanagement.events.OrderEventType;
 
-public abstract class OrderSearchControlsView extends VerticalLayout implements MvpView {
+import static ria.ordermanagement.OrderApplication.getEventBus;
+
+public abstract class OrderSearchControlsView extends HorizontalLayout implements MvpView {
     private Boolean needsBuilding = true;
 
     public void buildView() {
         if (needsBuilding) {
             needsBuilding = false;
-            addComponent(getLabel());
+            Button searchBtn = new Button("Search",
+                    new Button.ClickListener() {
+                        public void buttonClick(Button.ClickEvent event) {
+                            getEventBus().fireEvent(new OrderEvent(OrderEventType.SEARCH_BUTTON_PRESSED));
+                        }
+                    });
+            addComponent(searchBtn);
         }
     }
-
-    protected abstract Component getLabel();
 }
