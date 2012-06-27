@@ -22,7 +22,7 @@ public abstract class OrderSearchResultsPresenter implements MvpPresenter<OrderS
     protected void registerHandlers() {
         getEventBus().addHandler(OrderEvent.TYPE, new OrderEventHandler() {
             public void onEvent(OrderEvent event, OrderEventType eventType) {
-                if (eventType.equals(OrderEventType.INIT_ORDERS_SEARCH)) {
+                if (eventType.equals(OrderEventType.SEARCH_BUTTON_PRESSED)) {
                     orderSearchResultsView.setModel(getApplicationData().getContainer());
                 }
             }
