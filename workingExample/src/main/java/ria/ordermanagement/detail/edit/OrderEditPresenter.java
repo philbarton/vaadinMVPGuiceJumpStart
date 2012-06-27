@@ -27,5 +27,21 @@ public class OrderEditPresenter implements MvpDialoguePresenter {
                 }
             }
         });
+        getEventBus().addHandler(OrderEvent.TYPE, new OrderEventHandler() {
+            public void onEvent(OrderEvent event, OrderEventType eventType) {
+                if (eventType.equals(OrderEventType.CANCEL_EDIT_BUTTON_PRESSED)) {
+                    orderEditView.discard();
+                    getRootWindow().removeWindow(orderEditView);
+                }
+            }
+        });
+        getEventBus().addHandler(OrderEvent.TYPE, new OrderEventHandler() {
+            public void onEvent(OrderEvent event, OrderEventType eventType) {
+                if (eventType.equals(OrderEventType.SAVE_EDIT_BUTTON_PRESSED)) {
+                    orderEditView.commit();
+                    getRootWindow().removeWindow(orderEditView);
+                }
+            }
+        });
     }
 }

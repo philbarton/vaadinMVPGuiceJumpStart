@@ -83,6 +83,16 @@ public class OrderEditView extends Window implements MvpView {
         return form;
     }
 
+    public void commit() {
+        leftForm.commit();
+        rightForm.commit();
+    }
+
+    public void discard() {
+        leftForm.discard();
+        rightForm.discard();
+    }
+
     @Inject
     public void setFormFieldFactory(OrderFormFieldFactory formFieldFactory) {
         this.formFieldFactory = formFieldFactory;
