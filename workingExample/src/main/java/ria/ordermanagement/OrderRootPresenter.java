@@ -1,6 +1,6 @@
 package ria.ordermanagement;
 
-import com.vaadin.ui.Component;
+import com.google.inject.Inject;
 import ria.common.MvpPresenter;
 import ria.ordermanagement.events.OrderEvent;
 import ria.ordermanagement.events.OrderEventHandler;
@@ -13,7 +13,9 @@ public class OrderRootPresenter implements MvpPresenter<OrderRootView> {
     protected OrderRootView orderRootView;
     protected OrderSearchPresenter orderSearchPresenter;
 
-    public OrderRootPresenter(OrderRootView orderRootView, OrderSearchPresenter orderSearchPresenter) {
+    @Inject
+    public OrderRootPresenter(final OrderRootView orderRootView,
+                              final OrderSearchPresenter orderSearchPresenter) {
         this.orderRootView = orderRootView;
         this.orderSearchPresenter = orderSearchPresenter;
         registerHandlers();

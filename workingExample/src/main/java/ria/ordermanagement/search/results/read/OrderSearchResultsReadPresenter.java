@@ -7,5 +7,7 @@ public class OrderSearchResultsReadPresenter extends OrderSearchResultsPresenter
     @Inject
     public OrderSearchResultsReadPresenter(final OrderSearchResultsReadView orderSearchResultsReadView) {
         this.orderSearchResultsView = orderSearchResultsReadView;
+        registerHandlers();
     }
+
 }

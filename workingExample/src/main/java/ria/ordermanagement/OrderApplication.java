@@ -18,6 +18,8 @@ public class OrderApplication extends Application implements HttpServletRequestL
     protected final EventBus eventBusInstance = new SimpleEventBus();
     private static ThreadLocal<Window> ROOT_WINDOW = new ThreadLocal<Window>();
     protected final Window windowInstance = new Window("DPS 2");
+    private static ThreadLocal<ApplicationData> APPLICATION_DATA = new ThreadLocal<ApplicationData>();
+    private ApplicationData applicationData;
     protected Window mainWindow;
     protected Injector injector;
 
@@ -27,6 +29,8 @@ public class OrderApplication extends Application implements HttpServletRequestL
         setEventBus(eventBusInstance);
         setRootWindow(windowInstance);
         injector = Guice.createInjector();
+        applicationData = injector.getInstance(ApplicationData.class);
+        setApplicationData(applicationData);
         OrderRootPresenter orderRootPresenter = injector.getInstance(OrderRootPresenter.class);
         mainWindow.addComponent(orderRootPresenter.getView());
         setMainWindow(mainWindow);
@@ -36,11 +40,13 @@ public class OrderApplication extends Application implements HttpServletRequestL
     public void onRequestStart(HttpServletRequest request, HttpServletResponse response) {
         setEventBus(eventBusInstance);
         setRootWindow(windowInstance);
+        setApplicationData(applicationData);
     }
 
     public void onRequestEnd(HttpServletRequest request, HttpServletResponse response) {
         EVENT_BUS.remove();
         ROOT_WINDOW.remove();
+        APPLICATION_DATA.remove();
     }
 
     public static EventBus getEventBus() {
@@ -60,6 +66,16 @@ public class OrderApplication extends Application implements HttpServletRequestL
     public static void setRootWindow(Window rootWindow) {
         if (getRootWindow() == null) {
             ROOT_WINDOW.set(rootWindow);
+        }
+    }
+
+    public static ApplicationData getApplicationData() {
+        return APPLICATION_DATA.get();
+    }
+
+    public static void setApplicationData(ApplicationData applicationData) {
+        if (getApplicationData() == null) {
+            APPLICATION_DATA.set(applicationData);
         }
     }
 }

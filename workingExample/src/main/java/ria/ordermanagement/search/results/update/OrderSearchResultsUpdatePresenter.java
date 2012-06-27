@@ -7,5 +7,6 @@ public class OrderSearchResultsUpdatePresenter extends OrderSearchResultsPresent
     @Inject
     public OrderSearchResultsUpdatePresenter(final OrderSearchResultsUpdateView orderSearchResultsUpdateView) {
         this.orderSearchResultsView = orderSearchResultsUpdateView;
+        registerHandlers();
     }
 }
