@@ -11,11 +11,10 @@ import ria.ordermanagement.search.results.OrderSearchResultsView;
 import static ria.ordermanagement.OrderApplication.getApplicationData;
 import static ria.ordermanagement.OrderApplication.getEventBus;
 
-public class OrderSearchResultsUpdateView extends OrderSearchResultsView implements Action.Handler, ItemClickEvent.ItemClickListener {
+public class OrderSearchResultsUpdateView extends OrderSearchResultsView implements Action.Handler {
     @Override
     public void buildView() {
         super.buildView();
-        addListener((ItemClickEvent.ItemClickListener) this);
         addActionHandler(this);
     }
 
@@ -30,11 +29,4 @@ public class OrderSearchResultsUpdateView extends OrderSearchResultsView impleme
             getEventBus().fireEvent(new OrderEvent(OrderEventType.EDIT_ORDER_SELECTED));
         }
     }
-
-    public void itemClick(ItemClickEvent event) {
-        if (event.getButton() == ItemClickEvent.BUTTON_RIGHT) {
-            setValue(event.getItemId());
-        }
-    }
-
 }
