@@ -2,7 +2,6 @@ package ria.ordermanagement.search.results.update;
 
 import com.vaadin.data.Container;
 import com.vaadin.event.Action;
-import com.vaadin.event.ItemClickEvent;
 import ria.common.FmActions;
 import ria.ordermanagement.events.OrderEvent;
 import ria.ordermanagement.events.OrderEventType;
